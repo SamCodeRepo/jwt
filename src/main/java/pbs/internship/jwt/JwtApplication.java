@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pbs.internship.jwt.domain.Role;
 import pbs.internship.jwt.domain.User;
 import pbs.internship.jwt.service.UserService;
@@ -17,6 +19,11 @@ public class JwtApplication {
 		SpringApplication.run(JwtApplication.class, args);
 	}
 
+
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Bean
 	CommandLineRunner run(UserService userService) {
