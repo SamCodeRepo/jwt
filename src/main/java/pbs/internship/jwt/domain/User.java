@@ -3,7 +3,6 @@ package pbs.internship.jwt.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;

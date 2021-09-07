@@ -1,9 +1,5 @@
 package pbs.internship.jwt.api;
 
-//import com.auth0.jwt.JWT;
-//import com.auth0.jwt.JWTVerifier;
-//import com.auth0.jwt.algorithms.Algorithm;
-//import com.auth0.jwt.interfaces.DecodedJWT;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -65,6 +61,20 @@ public class UserResource {
         userService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/user/update")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/update").toUriString());
+        return ResponseEntity.created(uri).body(userService.updateUser(user));
+    }
+
+    @DeleteMapping("/user/delete")
+    public ResponseEntity<?> deleteUser(@RequestBody User user) {
+        userService.deleteUser(user);
+        return ResponseEntity.ok().build();
+
+    }
+
 
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

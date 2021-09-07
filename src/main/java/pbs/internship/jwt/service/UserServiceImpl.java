@@ -78,5 +78,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepo.findAll();
     }
 
+    @Override
+    public User updateUser(User user) {
+        log.info("Saving new user {} to the database", user.getId());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepo.save(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        log.info("Deleting user {} to the database", user.getId());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+         userRepo.delete(user);
+    }
+
 
 }
